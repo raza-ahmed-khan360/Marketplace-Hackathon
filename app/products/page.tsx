@@ -368,7 +368,7 @@ function ProductsContent() {
       {/* Newsletter Section */}
       <section className="w-auto py-12 bg-gray-scales-off-white">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-[400px] sm:max-w-4xl mx-auto">
             <h2 className="text-2xl md:text-4xl lg:text-[32px] font-semibold text-gray-scales-black text-center mb-8">
               Subscribe to our newsletter
             </h2>
@@ -388,7 +388,7 @@ function ProductsContent() {
               
               <button 
                 type="submit"
-                className="px-6 py-3 bg-accents-accents text-gray-scales-white rounded-3xs hover:bg-accents-dark-accents transition-colors"
+                className="px-6 py-3 bg-accents-accents text-gray-scales-white rounded-3xs hover:bg-accents-dark-accents transition-colors whitespace-nowrap"
               >
                 Subscribe
               </button>
