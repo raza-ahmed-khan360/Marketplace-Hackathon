@@ -38,155 +38,130 @@ const Header: NextPage<HeaderProps> = ({ onToggleMenu }) => {
   const totalWishlistItems = wishlistItems?.length || 0;
 
   return (
-    <>
-      <header className="w-auto font-inter flex justify-between items-center bg-gray-scales-off-white py-3 px-4 lg:px-20">
-        <div className="container mx-auto flex items-center justify-between lg:justify-between px-0">
-          {/* Logo and Mobile Menu Section */}
-          <div className="flex items-center gap-4">
-            {/* Logo with Home Link */}
-            <Link 
-              href="/" 
-              className="flex items-center no-underline gap-2"
-            >
-              <Image
-                className="w-8 lg:w-10 h-8 lg:h-10"
-                width={40}
-                height={40}
-                alt="Comforty Logo"
-                src="/Header/logo.svg"
-              />
-              <span className="text-lg lg:text-xl text-gray-scales-black font-medium">
-                Comforty
-              </span>
-            </Link>
-
-            {/* Mobile Menu Toggle Button */}
-            <button
-              className="lg:hidden flex items-center justify-center w-8 h-8 text-2xl text-gray-scales-black"
-              onClick={onToggleMenu}
-              aria-label="Toggle Menu"
-            >
-              <FiMenu />
-            </button>
-          </div>
-
-          {/* Search and Cart Section */}
-          <div className="flex items-center gap-4">
-            {/* Search Bar - Hidden on Mobile */}
-            <div className="hidden lg:block">
-              <SearchBar />
-            </div>
-
-            {/* Mobile Search Icon */}
-            <button
-              className="lg:hidden flex items-center justify-center w-8 h-8"
-              onClick={() => setIsSearchVisible(!isSearchVisible)}
-              aria-label="Toggle Search"
-            >
-              <MagnifyingGlassIcon className="w-6 h-6 text-gray-scales-black" />
-            </button>
-            
-            {/* Wishlist Link */}
-            <Link 
-              href="/wishlist" 
-              className="flex items-center text-black gap-2 no-underline group"
-            >
-              <div className="relative flex items-center rounded-lg bg-gray-scales-white py-2 px-3 lg:py-[11px] lg:px-4 gap-2 lg:gap-3 shadow-md hover:scale-105 transition-transform">
-                {/* Wishlist Icon */}
-                <HeartIcon className="w-5 lg:w-[22px] h-5 lg:h-[22px] text-gray-scales-black" />
-                <span className="hidden lg:inline text-xs lg:text-sm font-medium capitalize">
-                  Wishlist
-                </span>
-                
-                {/* Animated Wishlist Item Count Badge */}
-                <AnimatePresence>
-                  {totalWishlistItems > 0 && (
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      exit={{ scale: 0 }}
-                      className="relative w-4 lg:w-5 h-4 lg:h-5"
-                    >
-                      <motion.div 
-                        className="absolute inset-0 rounded-full bg-red-500"
-                        initial={{ scale: 0.5, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        exit={{ scale: 0.5, opacity: 0 }}
-                        transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                      />
-                      <motion.span 
-                        className="absolute inset-0 flex items-center justify-center text-[8px] lg:text-[10px] text-gray-scales-white font-medium"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                      >
-                        {totalWishlistItems}
-                      </motion.span>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            </Link>
-            
-            {/* Cart Link */}
-            <Link 
-              href="/cart" 
-              className="flex items-center text-black gap-2 no-underline group"
-            >
-              <div className="relative flex items-center rounded-lg bg-gray-scales-white py-2 px-3 lg:py-[11px] lg:px-4 gap-2 lg:gap-3 shadow-md hover:scale-105 transition-transform">
-                {/* Cart Icon */}
-                <ShoppingCartIcon className="w-5 lg:w-[22px] h-5 lg:h-[22px] text-gray-scales-black" />
-                <span className="hidden lg:inline text-xs lg:text-sm font-medium capitalize">
-                  Cart
-                </span>
-                
-                {/* Animated Cart Item Count Badge */}
-                <AnimatePresence>
-                  {totalItems > 0 && (
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      exit={{ scale: 0 }}
-                      className="relative w-4 lg:w-5 h-4 lg:h-5"
-                    >
-                      <motion.div 
-                        className="absolute inset-0 rounded-full bg-accents-dark-accents"
-                        initial={{ scale: 0.5, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        exit={{ scale: 0.5, opacity: 0 }}
-                        transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                      />
-                      <motion.span 
-                        className="absolute inset-0 flex items-center justify-center text-[8px] lg:text-[10px] text-gray-scales-white font-medium"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                      >
-                        {totalItems}
-                      </motion.span>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            </Link>
-          </div>
-        </div>
-      </header>
-
-      {/* Mobile Search Bar */}
-      <AnimatePresence>
-        {isSearchVisible && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="lg:hidden w-full bg-gray-scales-off-white px-4 py-2 border-t border-gray-scales-light-gray"
+    <header className="w-auto font-inter flex justify-between items-center bg-gray-scales-off-white py-3 px-4 lg:px-20">
+      <div className="container mx-auto flex items-center justify-between lg:justify-between px-0">
+        {/* Logo and Mobile Menu Section */}
+        <div className="flex items-center gap-4">
+          {/* Logo with Home Link */}
+          <Link 
+            href="/" 
+            className="flex items-center no-underline gap-2"
           >
-            <SearchBar onClose={() => setIsSearchVisible(false)} />
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+            <Image
+              className="w-8 lg:w-10 h-8 lg:h-10"
+              width={40}
+              height={40}
+              alt="Comforty Logo"
+              src="/Header/logo.svg"
+            />
+            <span className="text-lg lg:text-xl text-gray-scales-black font-medium">
+              Comforty
+            </span>
+          </Link>
+
+          {/* Mobile Menu Toggle Button */}
+          <button
+            className="sm:hidden flex items-center justify-center w-8 h-8 text-2xl text-gray-scales-black"
+            onClick={onToggleMenu}
+            aria-label="Toggle Menu"
+          >
+            <FiMenu />
+          </button>
+        </div>
+
+        {/* Search and Cart Section */}
+        <div className="flex items-center gap-4">
+          {/* Search Bar - Hidden on Mobile */}
+          <div className="hidden sm:block">
+            <SearchBar />
+          </div>
+            
+          {/* Wishlist Link - Hidden on Mobile */}
+          <Link 
+            href="/wishlist" 
+            className="hidden sm:flex items-center text-black gap-2 no-underline group"
+          >
+            <div className="relative flex items-center rounded-lg bg-gray-scales-white py-2 px-3 lg:py-[11px] lg:px-4 gap-2 lg:gap-3 shadow-md hover:scale-105 transition-transform">
+              {/* Wishlist Icon */}
+              <HeartIcon className="w-5 lg:w-[22px] h-5 lg:h-[22px] text-gray-scales-black" />
+              <span className="hidden lg:inline text-xs lg:text-sm font-medium capitalize">
+                Wishlist
+              </span>
+              
+              {/* Animated Wishlist Item Count Badge */}
+              <AnimatePresence>
+                {totalWishlistItems > 0 && (
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    exit={{ scale: 0 }}
+                    className="relative w-4 lg:w-5 h-4 lg:h-5"
+                  >
+                    <motion.div 
+                      className="absolute inset-0 rounded-full bg-red-500"
+                      initial={{ scale: 0.5, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      exit={{ scale: 0.5, opacity: 0 }}
+                      transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                    />
+                    <motion.span 
+                      className="absolute inset-0 flex items-center justify-center text-[8px] lg:text-[10px] text-gray-scales-white font-medium"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                    >
+                      {totalWishlistItems}
+                    </motion.span>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </Link>
+            
+          {/* Cart Link - Always Visible */}
+          <Link 
+            href="/cart" 
+            className="flex items-center text-black gap-2 no-underline group"
+          >
+            <div className="relative flex items-center rounded-lg bg-gray-scales-white py-2 px-3 lg:py-[11px] lg:px-4 gap-2 lg:gap-3 shadow-md hover:scale-105 transition-transform">
+              {/* Cart Icon */}
+              <ShoppingCartIcon className="w-5 lg:w-[22px] h-5 lg:h-[22px] text-gray-scales-black" />
+              <span className="hidden lg:inline text-xs lg:text-sm font-medium capitalize">
+                Cart
+              </span>
+              
+              {/* Animated Cart Item Count Badge */}
+              <AnimatePresence>
+                {totalItems > 0 && (
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    exit={{ scale: 0 }}
+                    className="relative w-4 lg:w-5 h-4 lg:h-5"
+                  >
+                    <motion.div 
+                      className="absolute inset-0 rounded-full bg-accents-dark-accents"
+                      initial={{ scale: 0.5, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      exit={{ scale: 0.5, opacity: 0 }}
+                      transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                    />
+                    <motion.span 
+                      className="absolute inset-0 flex items-center justify-center text-[8px] lg:text-[10px] text-gray-scales-white font-medium"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                    >
+                      {totalItems}
+                    </motion.span>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </Link>
+        </div>
+      </div>
+    </header>
   );
 };
 
