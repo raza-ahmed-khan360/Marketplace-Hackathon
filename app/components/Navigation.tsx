@@ -1,14 +1,20 @@
 'use client';
-
+ 
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useUser } from '../contexts/UserContext';
+import { HeartIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import { useWishlist } from '../contexts/WishlistContext';
+import SearchBar from './SearchBar';
 
 export default function Navigation() {
   const { user } = useUser();
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSearchVisible, setIsSearchVisible] = useState(false);
+  const { wishlistItems } = useWishlist();
+  const totalWishlistItems = wishlistItems?.length || 0;
 
   const userMenuItems = [
     { label: 'My Orders', href: '/user-panel?tab=orders' },
@@ -199,7 +205,37 @@ export default function Navigation() {
 
       {/* Mobile menu */}
       <div className={`sm:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>
+        {/* Search Section */}
+        <div className="px-4 py-3 border-b border-gray-scales-light-gray">
+          {isSearchVisible ? (
+            <SearchBar onClose={() => setIsSearchVisible(false)} />
+          ) : (
+            <button
+              onClick={() => setIsSearchVisible(true)}
+              className="flex items-center w-full px-3 py-2 text-base font-medium text-gray-scales-dark-gray hover:text-gray-scales-black"
+            >
+              <MagnifyingGlassIcon className="w-5 h-5 mr-3" />
+              Search Products
+            </button>
+          )}
+        </div>
+
         <div className="pt-2 pb-3 space-y-1">
+          {/* Wishlist Link */}
+          <Link
+            href="/wishlist"
+            className="flex items-center px-3 py-2 text-base font-medium text-gray-scales-dark-gray hover:text-gray-scales-black"
+          >
+            <HeartIcon className="w-5 h-5 mr-3" />
+            Wishlist
+            {totalWishlistItems > 0 && (
+              <span className="ml-2 px-2 py-0.5 text-xs font-medium bg-red-500 text-white rounded-full">
+                {totalWishlistItems}
+              </span>
+            )}
+          </Link>
+
+          {/* Existing Links */}
           <Link
             href="/products"
             className={`block px-3 py-2 text-base font-medium ${
@@ -219,16 +255,6 @@ export default function Navigation() {
             }`}
           >
             Categories
-          </Link>
-          <Link
-            href="/cart"
-            className={`block px-3 py-2 text-base font-medium ${
-              isActive('/cart')
-                ? 'text-accents-accents bg-accents-accents/10'
-                : 'text-gray-scales-dark-gray hover:text-gray-scales-black'
-            }`}
-          >
-            Cart
           </Link>
         </div>
 
