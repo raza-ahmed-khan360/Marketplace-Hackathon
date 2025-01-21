@@ -3,7 +3,7 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { client } from '../../lib/sanity';
 import toast from 'react-hot-toast';
-import { validatePassword } from '../utils/validation';
+import { validatePassword } from '../../lib/utils/validation';
 
 interface User {
   _id: string;
