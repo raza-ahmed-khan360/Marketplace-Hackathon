@@ -17,6 +17,19 @@ import { getProductById } from '../../lib/api'; // Adjust the import based on yo
  * @returns {JSX.Element} A complete product page with details and suggestions
  */
 export default function SingleProduct(): JSX.Element {
+  return (
+    <Suspense fallback={<div className="flex items-center justify-center min-h-[400px]">
+      <div className="text-center">
+        <div className="text-lg text-gray-600 mb-2">Loading product...</div>
+        <div className="text-sm text-gray-400">Please wait while we fetch the product details</div>
+      </div>
+    </div>}>
+      <SingleProductContent />
+    </Suspense>
+  );
+}
+
+function SingleProductContent(): JSX.Element {
   const searchParams = useSearchParams();
   const id = searchParams ? searchParams.get('id') : null;
   const [currentProduct, setCurrentProduct] = useState<ProductType | null>(null);
@@ -89,11 +102,9 @@ export default function SingleProduct(): JSX.Element {
   }
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <div className="min-h-screen">
-        <Product product={currentProduct} />
-        <ProductCarousel currentProductId={currentProduct._id} />
-      </div>
-    </Suspense>
+    <div className="min-h-screen">
+      <Product product={currentProduct} />
+      <ProductCarousel currentProductId={currentProduct._id} />
+    </div>
   );
 }
