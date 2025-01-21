@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useCart } from '../../contexts/CartContext';
 import { Product, products } from '../../data/products';
 import { notFound } from 'next/navigation';
-import CardFeatured from '@/app/components/CardFeatured';
+import CardFeatured from '../../components/CardFeatured';
 import { toast } from 'react-hot-toast';
 
 export default function ProductPage({ params }: { params: { id: string } }) {
