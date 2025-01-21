@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
-
+ 
 const Footer: NextPage = () => {
   return (
     <footer className="w-auto flex flex-col items-center bg-gray-scales-off-white py-10 px-4 sm:px-8 md:px-12 lg:px-20 font-inter">
@@ -82,20 +82,20 @@ const Footer: NextPage = () => {
           <div className="flex flex-col items-start gap-4">
             <h3 className="text-sm font-medium text-gray-scales-gray uppercase">Newsletter</h3>
             <form className="w-full flex flex-col gap-2">
-              <div className="flex flex-col sm:flex-row gap-2">
+              <div className="flex flex-col sm:flex-row gap-2 max-w-[400px] sm:max-w-none">
                 <input
                   type="email"
                   placeholder="Your email"
-                  className="flex-grow rounded-3xs bg-gray-scales-white h-[46px] py-2 px-3 text-sm focus:outline-none focus:border-accents-dark-accents border border-gray-scales-light-gray font-inter text-gray-scales-dark-gray w-full"
+                  className="flex-grow rounded-3xs bg-gray-scales-white h-[46px] py-2 px-3 text-sm focus:outline-none focus:border-accents-dark-accents border border-gray-scales-light-gray font-inter text-gray-scales-dark-gray"
                 />
                 <button
                   type="submit"
-                  className="bg-accents-accents text-gray-scales-white text-md font-medium py-3.5 px-6 cursor-pointer rounded-3xs hover:bg-accents-dark-accents transition-colors w-full sm:w-auto"
+                  className="bg-accents-accents text-gray-scales-white text-md font-medium py-3.5 px-6 cursor-pointer rounded-3xs hover:bg-accents-dark-accents transition-colors whitespace-nowrap"
                 >
                   Subscribe
                 </button>
               </div>
-              <p className="text-xs text-gray-scales-dark-gray mt-2">
+              <p className="text-xs text-gray-scales-dark-gray mt-2 max-w-[400px] sm:max-w-none">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tincidunt erat enim.
               </p>
             </form>
