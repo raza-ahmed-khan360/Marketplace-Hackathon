@@ -3,16 +3,21 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 import { searchProducts } from '../../lib/api';
 import { Product } from '../../types';
 
+interface SearchBarProps {
+  onClose?: () => void;
+}
+ 
 /**
  * SearchBar Component
  * Provides search functionality with debounced input and dropdown results
  * 
  * @returns {JSX.Element} Search bar with dropdown results
  */
-export default function SearchBar(): JSX.Element {
+export default function SearchBar({ onClose }: SearchBarProps): JSX.Element {
   // State management
   const [searchQuery, setSearchQuery] = useState('');
   const [results, setResults] = useState<Product[]>([]);
@@ -86,6 +91,14 @@ export default function SearchBar(): JSX.Element {
     setIsDropdownOpen(false);
     setSearchQuery('');
     setResults([]);
+    if (onClose) onClose();
+  };
+
+  const handleClose = () => {
+    setSearchQuery('');
+    setResults([]);
+    setIsDropdownOpen(false);
+    if (onClose) onClose();
   };
 
   return (
@@ -100,16 +113,26 @@ export default function SearchBar(): JSX.Element {
             setIsDropdownOpen(true);
           }}
           placeholder="Search products..."
-          className="w-full lg:w-[300px] h-[46px] px-4 rounded-3xs border border-gray-scales-light-gray bg-gray-scales-white focus:outline-none focus:border-accents-dark-accents text-gray-scales-dark-gray"
+          className="w-full h-[46px] px-4 rounded-3xs border border-gray-scales-light-gray bg-gray-scales-white focus:outline-none focus:border-accents-dark-accents text-gray-scales-dark-gray"
           aria-label="Search products"
         />
-        <Image
-          src="/Header/search.svg"
-          alt="Search"
-          width={20}
-          height={20}
-          className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-scales-dark-gray"
-        />
+        {onClose ? (
+          <button
+            onClick={handleClose}
+            className="absolute right-3 top-1/2 transform -translate-y-1/2"
+            aria-label="Close search"
+          >
+            <XMarkIcon className="w-5 h-5 text-gray-scales-dark-gray" />
+          </button>
+        ) : (
+          <Image
+            src="/Header/search.svg"
+            alt="Search"
+            width={20}
+            height={20}
+            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-scales-dark-gray"
+          />
+        )}
       </div>
 
       {/* Search Results Dropdown */}
