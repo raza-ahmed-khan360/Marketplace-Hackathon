@@ -1,0 +1,43 @@
+{
+  "name": "figma-template-08",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "migrate": "node scripts/migrate.mjs"
+  },
+  "dependencies": {
+    "@heroicons/react": "^2.2.0",
+    "@sanity/image-url": "^1.1.0",
+    "@sanity/vision": "^3.70.0",
+    "@types/bcryptjs": "^2.4.6",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.7",
+    "framer-motion": "^11.18.1",
+    "google-auth-library": "^9.15.0",
+    "next": "14.2.20",
+    "next-sanity": "^9.8.37",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-error-boundary": "^5.0.0",
+    "react-hot-toast": "^2.5.1",
+    "react-icons": "^5.4.0",
+    "sanity": "^3.70.0",
+    "styled-components": "^6.1.14"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^10.4.0",
+    "@types/next-auth": "^3.13.0",
+    "@types/node": "^20",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.20",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  }
+}
