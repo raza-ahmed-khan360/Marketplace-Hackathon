@@ -1,0 +1,6 @@
+Test Case ID,Description,Steps,Expected Result,Actual Result,Status,Remarks
+TC001,Validate HTTPS,Open the website > Verify HTTPS is used,Website uses HTTPS,Website uses HTTPS,Passed,Perfeclty working
+TC002,Validate Viewport,"Open the website > Check for <meta name=""viewport""> tag",Viewport tag is present,Viewport tag is present,Passed,Working
+TC003,Check First Contentful Paint,Open the website > Measure time to first contentful paint,First contentful paint occurs within acceptable time,First contentful paint occurs within acceptable time,Passed,Acceptable
+TC004,Check Largest Contentful Paint,Open the website > Measure time to largest contentful paint,Largest contentful paint occurs within acceptable time,Largest contentful paint occurs within acceptable time,Passed,Working
+TC005,Check Speed Index,Open the website > Measure speed index,Speed index is within acceptable range,Speed index is within acceptable range,Passed,82% in performance
