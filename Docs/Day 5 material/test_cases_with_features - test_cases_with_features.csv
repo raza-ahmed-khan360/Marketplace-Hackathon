@@ -1,0 +1,11 @@
+test_id,feature,steps,expected_outcome,actual_outcome,status,severity_level,assigned_to
+T001,Performance - FCP,Test First Contentful Paint on the home page,First Contentful Paint occurs within 2 seconds,FCP is recorded at 1.5 seconds,Passed,High,Frontend Dev
+T002,Performance - LCP,Measure Largest Contentful Paint for product pages,LCP happens within 3 seconds,LCP occurs at 2.8 seconds,Passed,High,Frontend Dev
+T003,Performance - TBT,Check Total Blocking Time for initial load,TBT should be less than 300ms,TBT is recorded at 250ms,Passed,High,Backend Dev
+T004,Performance - CLS,Test Cumulative Layout Shift during page load,CLS should be less than 0.1,CLS is measured at 0.05,Passed,Medium,Frontend Dev
+T005,Accessibility - ARIA,Verify ARIA attributes for the navigation elements,"Correct ARIA attributes should be used (role, label)",ARIA attributes are missing for some navigation items,Failed,High,Frontend Dev
+T006,Accessibility - Color Contrast,Check contrast ratio for text on product page,Contrast ratio should be at least 4.5:1,"Contrast ratio is 3.8:1, needs adjustment",Failed,Medium,Design Team
+T007,Best Practices - HTTPS,Ensure all resources are loaded via HTTPS,All resources must be loaded over HTTPS,Some resources are being loaded over HTTP,Failed,High,Backend Dev
+T008,Best Practices - Image Optimization,Test image formats on the homepage,"Images should use modern formats (WebP, AVIF)",Some images are still in JPEG format,Failed,Medium,Frontend Dev
+T009,SEO - Mobile Friendly,Verify mobile responsiveness across different devices,Page should be fully responsive on mobile,Page is not fully responsive on smaller screen sizes,Failed,High,Frontend Dev
+T010,SEO - Crawlability,Test if the homepage is crawlable by search engines,Page must be crawlable without issues,Homepage is crawlable with no issues,Passed,Low,Backend Dev
