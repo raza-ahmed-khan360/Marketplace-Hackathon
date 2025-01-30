@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useCategories } from '../app/contexts/CategoriesContext';
-import RangeSlider from './RangeSlider';
 
 export default function ProductFilters() {
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000]);
@@ -16,16 +15,6 @@ export default function ProductFilters() {
             {cat.title}
           </label>
         ))}
-      </div>
-      
-      <div className="mb-6">
-        <h3 className="font-semibold mb-3">Price Range</h3>
-        <RangeSlider
-          value={priceRange}
-          onChange={setPriceRange}
-          min={0}
-          max={1000}
-        />
       </div>
     </div>
   );

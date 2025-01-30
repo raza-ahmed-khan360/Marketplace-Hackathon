@@ -3,7 +3,6 @@
 import { useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import { useUser } from '../contexts/UserContext';
 
 export default function OrderConfirmation() {
   return (
@@ -22,15 +21,14 @@ export default function OrderConfirmation() {
 function OrderConfirmationContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { user } = useUser();
   const orderId = searchParams ? searchParams.get('orderId') : null;
 
   useEffect(() => {
-    if (!user || !orderId) {
-      console.error('User or orderId is missing');
+    if (!orderId) {
+      console.error('Order ID is missing');
       return;
     }
-  }, [user, orderId]);
+  }, [orderId]);
 
   if (!orderId) return null;
 
