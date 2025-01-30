@@ -7,15 +7,7 @@ import Product from './Product';
 import ProductCarousel from './Suggestion';
 import { Product as ProductType } from '../../types';
 import { client, productByIdQuery } from '../../lib/sanity';
-import { getProductById } from '../../lib/api'; // Adjust the import based on your project structure
 
-/**
- * SingleProduct Page Component
- * Displays a detailed view of a single product with related product suggestions
- * Handles loading states and error cases
- * 
- * @returns {JSX.Element} A complete product page with details and suggestions
- */
 export default function SingleProduct(): JSX.Element {
   return (
     <Suspense fallback={<div className="flex items-center justify-center min-h-[400px]">
@@ -37,10 +29,6 @@ function SingleProductContent(): JSX.Element {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    /**
-     * Fetches product data from Sanity
-     * Handles error cases and updates loading state
-     */
     const fetchProduct = async () => {
       if (id) {
         try {
@@ -60,14 +48,13 @@ function SingleProductContent(): JSX.Element {
           setLoading(false);
         }
       } else {
-        setLoading(false); // If id is null, stop loading
+        setLoading(false);
       }
     };
 
     fetchProduct();
   }, [id]);
 
-  // Loading state display
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
@@ -79,7 +66,6 @@ function SingleProductContent(): JSX.Element {
     );
   }
 
-  // Error state display
   if (error) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
@@ -96,7 +82,6 @@ function SingleProductContent(): JSX.Element {
     );
   }
 
-  // Handle case when product is not found
   if (!currentProduct) {
     return notFound();
   }
