@@ -8,8 +8,6 @@ import { WishlistProvider } from './contexts/WishlistContext';
 import { CategoriesProvider } from './contexts/CategoriesContext';
 import { ReviewsProvider } from './contexts/ReviewsContext';
 import { Toaster } from 'react-hot-toast';
-import { UserProvider } from './contexts/UserContext';
-import { AdminProvider } from './contexts/AdminContext';
 
 export default function ClientLayout({
   children,
@@ -17,8 +15,6 @@ export default function ClientLayout({
   children: React.ReactNode;
 }) {
   return (
-    <AdminProvider>
-      <UserProvider>
         <OrderStatusProvider>
           <CartProvider>
             <Toaster position="bottom-right" />
@@ -33,7 +29,5 @@ export default function ClientLayout({
             </WishlistProvider>
           </CartProvider>
         </OrderStatusProvider>
-      </UserProvider>
-    </AdminProvider>
   );
 } 

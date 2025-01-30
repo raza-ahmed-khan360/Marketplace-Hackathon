@@ -3,13 +3,10 @@
 import { useState } from 'react';
 import { StarIcon } from '@heroicons/react/24/solid';
 import { StarIcon as StarOutlineIcon } from '@heroicons/react/24/outline';
-import { useUser } from '../contexts/UserContext';
 import toast from 'react-hot-toast';
 
 interface Review {
   id: string;
-  userId: string;
-  userName: string;
   rating: number;
   comment: string;
   date: string;
@@ -25,26 +22,17 @@ export default function Reviews({ productId, initialReviews = [] }: ReviewsProps
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
   const [hoveredRating, setHoveredRating] = useState(0);
-  const { user } = useUser();
 
   const handleSubmitReview = (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (!user) {
-      toast.error('Please login to submit a review');
-      return;
-    }
 
     if (rating === 0) {
       toast.error('Please select a rating');
       return;
     }
 
-    // In a real application, this would be an API call
     const newReview = {
       id: Date.now().toString(),
-      userId: user._id,
-      userName: user.name,
       rating,
       comment,
       date: new Date().toISOString(),
@@ -142,7 +130,7 @@ export default function Reviews({ productId, initialReviews = [] }: ReviewsProps
           <div key={review.id} className="border-b border-gray-scales-light-gray pb-6">
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
-                <span className="font-medium text-gray-scales-black">{review.userName}</span>
+                <span className="font-medium text-gray-scales-black">Anonymous</span>
                 <div className="flex items-center">
                   {[1, 2, 3, 4, 5].map((star) => (
                     <StarIcon

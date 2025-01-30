@@ -9,7 +9,6 @@ import { useCart } from '../contexts/CartContext';
 import { useWishlist } from '../contexts/WishlistContext';
 import SearchBar from './SearchBar';
 import { motion, AnimatePresence } from "framer-motion";
-import { useUser } from '../contexts/UserContext';
 import { useState } from 'react';
 
 /**
@@ -28,7 +27,6 @@ interface HeaderProps {
  * @returns {JSX.Element} Header with responsive navigation elements
  */
 const Header: NextPage<HeaderProps> = ({ onToggleMenu }) => {
-  const { user } = useUser();
   const { cart } = useCart();
   const { wishlistItems } = useWishlist();
   const [isSearchVisible, setIsSearchVisible] = useState(false);
