@@ -199,7 +199,7 @@ This project is developed as part of the GIAIC Hackathon and is intended for edu
 
 ## Support
 
-For support, email hafizrazahmed42@gmail.com.
+For support, email support@comforty.com or join our Slack channel.
 
 ## Future Improvements
 - Add more payment gateways
