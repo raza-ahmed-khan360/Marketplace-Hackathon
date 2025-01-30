@@ -1,4 +1,4 @@
-{
+ {
   "name": "figma-template-08",
   "version": "0.1.0",
   "private": true,
@@ -19,7 +19,6 @@
     "framer-motion": "^11.18.1",
     "google-auth-library": "^9.15.0",
     "next": "14.2.20",
-    "next-auth": "^4.24.11",
     "next-sanity": "^9.8.37",
     "react": "^18",
     "react-dom": "^18",
