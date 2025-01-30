@@ -15,19 +15,19 @@ export default function ClientLayout({
   children: React.ReactNode;
 }) {
   return (
-        <OrderStatusProvider>
-          <CartProvider>
-            <Toaster position="bottom-right" />
-            <WishlistProvider>
-              <CategoriesProvider>
-                <ReviewsProvider>
-                  <NavBar />
-                  {children}
-                  <Footer />
-                </ReviewsProvider>
-              </CategoriesProvider>
-            </WishlistProvider>
-          </CartProvider>
-        </OrderStatusProvider>
+    <OrderStatusProvider>
+      <CartProvider>
+        <Toaster position="bottom-right" />
+        <WishlistProvider>
+          <CategoriesProvider>
+            <ReviewsProvider>
+              <NavBar />
+              {children}
+              <Footer />
+            </ReviewsProvider>
+          </CategoriesProvider>
+        </WishlistProvider>
+      </CartProvider>
+    </OrderStatusProvider>
   );
 } 

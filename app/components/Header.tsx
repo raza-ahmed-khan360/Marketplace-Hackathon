@@ -4,7 +4,7 @@ import type { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { FiMenu } from "react-icons/fi";
-import { ShoppingCartIcon, HeartIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import { ShoppingCartIcon, HeartIcon } from '@heroicons/react/24/outline';
 import { useCart } from '../contexts/CartContext';
 import { useWishlist } from '../contexts/WishlistContext';
 import SearchBar from './SearchBar';
@@ -36,8 +36,8 @@ const Header: NextPage<HeaderProps> = ({ onToggleMenu }) => {
   const totalWishlistItems = wishlistItems?.length || 0;
 
   return (
-    <header className="w-auto font-inter flex justify-between items-center bg-gray-scales-off-white py-3 px-4 lg:px-20">
-      <div className="container mx-auto flex items-center justify-between lg:justify-between px-0">
+    <header className="w-full font-inter flex justify-between items-center bg-gray-scales-off-white py-3 px-4 lg:px-20">
+      <div className="container mx-auto flex items-center justify-between px-0">
         {/* Logo and Mobile Menu Section */}
         <div className="flex items-center gap-4">
           {/* Logo with Home Link */}

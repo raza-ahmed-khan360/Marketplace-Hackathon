@@ -41,7 +41,7 @@ export default function FeaturedProducts() {
 
   if (loading) {
     return (
-      <section className="w-auto py-12 font-inter bg-gray-scales-white">
+      <section className="w-full py-12 font-inter bg-gray-scales-white">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl md:text-4xl lg:text-[32px] font-semibold capitalize mb-12 text-gray-scales-black">
             Featured Products
@@ -56,7 +56,7 @@ export default function FeaturedProducts() {
 
   if (error) {
     return (
-      <section className="w-auto py-12 font-inter bg-gray-scales-white">
+      <section className="w-full py-12 font-inter bg-gray-scales-white">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl md:text-4xl lg:text-[32px] font-semibold capitalize mb-12 text-gray-scales-black">
             Featured Products
@@ -76,7 +76,7 @@ export default function FeaturedProducts() {
   }
 
   return (
-    <section className="w-auto py-12 font-inter bg-gray-scales-white">
+    <section className="w-full py-12 font-inter bg-gray-scales-white">
       <div className="container mx-auto px-4">
         <h2 className="text-2xl md:text-4xl lg:text-[32px] font-semibold capitalize mb-12 text-gray-scales-black">
           Featured Products

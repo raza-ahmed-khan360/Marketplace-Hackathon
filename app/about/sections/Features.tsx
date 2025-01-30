@@ -5,10 +5,10 @@ interface FeatureCardProps {
     icon: string;
     title: string;
     description: string;
-  }
+}
   
-  const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description }) => (
-    <div className="bg-light-grey p-12 w-auto flex flex-col font-inter items-start space-y-3">
+const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description }) => (
+    <div className="bg-light-grey p-12 w-full flex flex-col font-inter items-start space-y-3">
       <Image 
         className="w-6 h-6 overflow-hidden" 
         width={24} 
@@ -19,9 +19,9 @@ interface FeatureCardProps {
       <div className="text-xl font-inter leading-[140%] text-teal">{title}</div>
       <div className="text-base leading-[150%]">{description}</div>
     </div>
-  );
+);
   
-  const Features: NextPage = () => {
+const Features: NextPage = () => {
     const features = [
       {
         icon: "/About/Delivery.svg",
@@ -62,7 +62,7 @@ interface FeatureCardProps {
           ))}
         </div>
       </div>
-      );
+    );
 };
 
 export default Features;

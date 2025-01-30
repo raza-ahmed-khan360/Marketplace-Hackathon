@@ -18,7 +18,7 @@ const Card = ({ category }: CardProps) => {
   return (
     <div
       onClick={handleClick}
-      className="w-[312px] h-[250px] cursor-pointer rounded-3xs overflow-hidden relative group font-inter"
+      className="w-full sm:w-[312px] h-[250px] cursor-pointer rounded-3xs overflow-hidden relative group font-inter"
     >
       <Image
         className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"

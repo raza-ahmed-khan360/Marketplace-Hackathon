@@ -13,12 +13,12 @@ const CompanyLogo: NextPage = () => {
     ];
 
     return (
-        <section className="w-auto py-12 font-inter bg-gray-scales-white">
+        <section className="w-full py-12 font-inter bg-gray-scales-white">
             <div className="container mx-auto px-4 lg:px-20">
                 <h2 className="text-2xl md:text-4xl lg:text-[32px] font-semibold text-gray-scales-black text-center mb-12">
                     Our Partners
                 </h2>
-                <div className="flex flex-wrap items-center justify-between gap-6 md:gap-8 lg:gap-12">
+                <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 lg:gap-12">
                     {logos.map((logo) => (
                         <div 
                             key={logo.alt} 

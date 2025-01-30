@@ -54,34 +54,22 @@ export default function Reviews({ productId, initialReviews = [] }: ReviewsProps
     <div className="w-full py-8 font-inter">
       <h2 className="text-2xl font-semibold text-gray-scales-black mb-6">Customer Reviews</h2>
       
-      {/* Average Rating Display */}
       <div className="flex items-center gap-4 mb-8">
         <div className="flex items-center">
           {[1, 2, 3, 4, 5].map((star) => (
             <StarIcon
               key={star}
-              className={`w-6 h-6 ${
-                star <= Number(getAverageRating())
-                  ? 'text-yellow-400'
-                  : 'text-gray-200'
-              }`}
+              className={`w-6 h-6 ${star <= Number(getAverageRating()) ? 'text-yellow-400' : 'text-gray-200'}`}
             />
           ))}
         </div>
-        <span className="text-lg font-semibold text-gray-scales-black">
-          {getAverageRating()} out of 5
-        </span>
-        <span className="text-gray-scales-dark-gray">
-          ({reviews.length} {reviews.length === 1 ? 'review' : 'reviews'})
-        </span>
+        <span className="text-lg font-semibold text-gray-scales-black">{getAverageRating()} out of 5</span>
+        <span className="text-gray-scales-dark-gray">({reviews.length} {reviews.length === 1 ? 'review' : 'reviews'})</span>
       </div>
 
-      {/* Review Form */}
       <form onSubmit={handleSubmitReview} className="mb-8">
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-scales-dark-gray mb-2">
-            Your Rating
-          </label>
+          <label className="block text-sm font-medium text-gray-scales-dark-gray mb-2">Your Rating</label>
           <div className="flex items-center gap-1">
             {[1, 2, 3, 4, 5].map((star) => (
               <button
@@ -103,9 +91,7 @@ export default function Reviews({ productId, initialReviews = [] }: ReviewsProps
         </div>
 
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-scales-dark-gray mb-2">
-            Your Review
-          </label>
+          <label className="block text-sm font-medium text-gray-scales-dark-gray mb-2">Your Review</label>
           <textarea
             value={comment}
             onChange={(e) => setComment(e.target.value)}
@@ -124,7 +110,6 @@ export default function Reviews({ productId, initialReviews = [] }: ReviewsProps
         </button>
       </form>
 
-      {/* Reviews List */}
       <div className="space-y-6">
         {reviews.map((review) => (
           <div key={review.id} className="border-b border-gray-scales-light-gray pb-6">
@@ -135,16 +120,12 @@ export default function Reviews({ productId, initialReviews = [] }: ReviewsProps
                   {[1, 2, 3, 4, 5].map((star) => (
                     <StarIcon
                       key={star}
-                      className={`w-4 h-4 ${
-                        star <= review.rating ? 'text-yellow-400' : 'text-gray-200'
-                      }`}
+                      className={`w-4 h-4 ${star <= review.rating ? 'text-yellow-400' : 'text-gray-200'}`}
                     />
                   ))}
                 </div>
               </div>
-              <span className="text-sm text-gray-scales-dark-gray">
-                {new Date(review.date).toLocaleDateString()}
-              </span>
+              <span className="text-sm text-gray-scales-dark-gray">{new Date(review.date).toLocaleDateString()}</span>
             </div>
             <p className="text-gray-scales-dark-gray">{review.comment}</p>
           </div>

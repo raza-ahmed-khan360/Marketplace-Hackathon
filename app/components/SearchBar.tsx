@@ -10,29 +10,17 @@ import { Product } from '../../types';
 interface SearchBarProps {
   onClose?: () => void;
 }
- 
-/**
- * SearchBar Component
- * Provides search functionality with debounced input and dropdown results
- * 
- * @returns {JSX.Element} Search bar with dropdown results
- */
+
 export default function SearchBar({ onClose }: SearchBarProps): JSX.Element {
-  // State management
   const [searchQuery, setSearchQuery] = useState('');
   const [results, setResults] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   
-  // Refs for click outside detection
   const searchRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
-  /**
-   * Handles search functionality with debouncing
-   * Fetches results from API when query length >= 2
-   */
   const performSearch = useCallback(async (query: string) => {
     if (query.length < 2) {
       setResults([]);
@@ -56,7 +44,6 @@ export default function SearchBar({ onClose }: SearchBarProps): JSX.Element {
     }
   }, []);
 
-  // Debounce search input
   useEffect(() => {
     const timer = setTimeout(() => {
       if (searchQuery) {
@@ -67,9 +54,6 @@ export default function SearchBar({ onClose }: SearchBarProps): JSX.Element {
     return () => clearTimeout(timer);
   }, [searchQuery, performSearch]);
 
-  /**
-   * Handles click outside search dropdown
-   */
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
@@ -83,9 +67,6 @@ export default function SearchBar({ onClose }: SearchBarProps): JSX.Element {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  /**
-   * Navigates to product page and closes dropdown
-   */
   const handleProductClick = (productId: string) => {
     router.push(`/single-product?id=${productId}`);
     setIsDropdownOpen(false);
@@ -103,7 +84,6 @@ export default function SearchBar({ onClose }: SearchBarProps): JSX.Element {
 
   return (
     <div ref={searchRef} className="relative font-inter">
-      {/* Search Input Container */}
       <div className="relative flex items-center">
         <input
           type="text"
@@ -135,7 +115,6 @@ export default function SearchBar({ onClose }: SearchBarProps): JSX.Element {
         )}
       </div>
 
-      {/* Search Results Dropdown */}
       {isDropdownOpen && (searchQuery || loading || error) && (
         <div className="absolute top-full left-0 right-0 mt-2 max-h-[400px] overflow-y-auto bg-gray-scales-white rounded-3xs shadow-lg border border-gray-scales-light-gray z-50">
           {loading && (
@@ -183,4 +162,4 @@ export default function SearchBar({ onClose }: SearchBarProps): JSX.Element {
       )}
     </div>
   );
-} 
+}

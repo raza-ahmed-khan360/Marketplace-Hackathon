@@ -65,30 +65,10 @@ export const Card = ({ product }: { product: Product }): JSX.Element => {
     e.stopPropagation();
     if (isInWishlist) {
       removeFromWishlist(product._id);
-      toast.success('Removed from wishlist!', {
-        style: {
-          border: '1px solid #EF4444',
-          padding: '16px',
-          color: '#1a1a1a',
-        },
-        iconTheme: {
-          primary: '#EF4444',
-          secondary: '#FFFFFF',
-        },
-      });
+      toast.success('Removed from wishlist!');
     } else {
       addToWishlist(product);
-      toast.success('Added to wishlist!', {
-        style: {
-          border: '1px solid #4CAF50',
-          padding: '16px',
-          color: '#1a1a1a',
-        },
-        iconTheme: {
-          primary: '#4CAF50',
-          secondary: '#FFFFFF',
-        },
-      });
+      toast.success('Added to wishlist!');
     }
   };
 

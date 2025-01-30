@@ -53,7 +53,7 @@ const Products: NextPage = () => {
   ];
 
   return (
-    <section className="w-auto font-inter text-left flex-col flex items-center justify-center px-4 py-12">
+    <section className="w-full font-inter text-left flex-col flex items-center justify-center px-4 py-12">
       {/* Section Header */}
       <div className="container flex flex-row items-center justify-between py-0 mb-[48px]">
         <h2 className="text-[32px] leading-[110%] text-left capitalize font-semibold">
@@ -70,7 +70,7 @@ const Products: NextPage = () => {
       </div>
 
       {/* Products Grid */}
-      <div className="grid w-full h-auto grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-[20px]">
+      <div className="grid w-full h-auto grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[20px]">
         {products.map((product, index) => (
           <div 
             key={index} 

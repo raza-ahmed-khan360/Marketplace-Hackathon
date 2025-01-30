@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const TopBar = () => {
   return (
-    <div className="w-auto flex justify-around bg-gray-scales-black text-gray-scales-white font-inter">
+    <div className="w-full flex justify-around bg-gray-scales-black text-gray-scales-white font-inter">
       <div className="container mx-auto px-4 lg:px-20 py-2 lg:py-3.5">
         <div className="flex flex-col lg:flex-row items-center justify-between">
           {/* Free Shipping Section */}
