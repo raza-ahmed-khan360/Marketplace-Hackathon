@@ -14,27 +14,27 @@ const FAQ: NextPage = () => {
   const faqData: FAQItem[] = [
     {
       question: "How can we get in touch with you?",
-      answer: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi quis modi ullam amet debitis libero veritatis enim repellat optio natus eum delectus deserunt, odit expedita eos molestiae ipsa totam quidem?"
+      answer: "You can reach us via email at support@example.com or call us at (123) 456-7890."
     },
     {
       question: "What types of chairs do you offer?",
-      answer: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi quis modi ullam amet debitis libero veritatis enim repellat optio natus eum delectus deserunt, odit expedita eos molestiae ipsa totam quidem?"
+      answer: "We offer a variety of chairs including office chairs, gaming chairs, and ergonomic chairs."
     },
     {
       question: "Do your chairs come with a warranty?",
-      answer: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi quis modi ullam amet debitis libero veritatis enim repellat optio natus eum delectus deserunt, odit expedita eos molestiae ipsa totam quidem?"
+      answer: "Yes, all our chairs come with a 2-year warranty covering manufacturing defects."
     },
     {
       question: "Can I try a chair before purchasing?",
-      answer: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi quis modi ullam amet debitis libero veritatis enim repellat optio natus eum delectus deserunt, odit expedita eos molestiae ipsa totam quidem?"
+      answer: "Yes, you can visit our showroom to try out our chairs before making a purchase."
     },
     {
       question: "What will be delivered? And When?",
-      answer: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi quis modi ullam amet debitis libero veritatis enim repellat optio natus eum delectus deserunt, odit expedita eos molestiae ipsa totam quidem?"
+      answer: "Your order will include the chair and assembly instructions. Delivery typically takes 3-5 business days."
     },
     {
       question: "How do I clean and maintain my Comforty chair?",
-      answer: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi quis modi ullam amet debitis libero veritatis enim repellat optio natus eum delectus deserunt, odit expedita eos molestiae ipsa totam quidem?"
+      answer: "To clean your chair, use a damp cloth with mild soap. Avoid using harsh chemicals. Regularly check and tighten screws to maintain stability."
     }
   ];
 
