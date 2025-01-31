@@ -1,4 +1,4 @@
- {
+{
   "name": "figma-template-08",
   "version": "0.1.0",
   "private": true,
@@ -10,6 +10,8 @@
     "migrate": "node scripts/migrate.mjs"
   },
   "dependencies": {
+    "@clerk/clerk-sdk-node": "^5.1.6",
+    "@clerk/nextjs": "^6.10.5",
     "@heroicons/react": "^2.2.0",
     "@sanity/image-url": "^1.1.0",
     "@sanity/vision": "^3.70.0",
@@ -26,7 +28,8 @@
     "react-hot-toast": "^2.5.1",
     "react-icons": "^5.4.0",
     "sanity": "^3.70.0",
-    "styled-components": "^6.1.14"
+    "styled-components": "^6.1.14",
+    "svix": "^1.45.1"
   },
   "devDependencies": {
     "@testing-library/dom": "^10.4.0",

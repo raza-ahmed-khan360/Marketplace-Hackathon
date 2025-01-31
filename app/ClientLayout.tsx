@@ -7,7 +7,16 @@ import { OrderStatusProvider } from './contexts/OrderStatusContext';
 import { WishlistProvider } from './contexts/WishlistContext';
 import { CategoriesProvider } from './contexts/CategoriesContext';
 import { ReviewsProvider } from './contexts/ReviewsContext';
+import { OrdersProvider } from './contexts/OrdersContext';
+import { ProductsProvider } from './contexts/ProductsContext';
+import { UsersProvider } from './contexts/UsersContext';
 import { Toaster } from 'react-hot-toast';
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  UserButton
+} from '@clerk/nextjs';
 
 export default function ClientLayout({
   children,
@@ -15,19 +24,31 @@ export default function ClientLayout({
   children: React.ReactNode;
 }) {
   return (
-    <OrderStatusProvider>
-      <CartProvider>
-        <Toaster position="bottom-right" />
-        <WishlistProvider>
-          <CategoriesProvider>
-            <ReviewsProvider>
-              <NavBar />
-              {children}
-              <Footer />
-            </ReviewsProvider>
-          </CategoriesProvider>
-        </WishlistProvider>
-      </CartProvider>
-    </OrderStatusProvider>
+    <OrdersProvider>
+      <UsersProvider>
+        <ProductsProvider>
+          <OrderStatusProvider>
+            <CartProvider>
+              <Toaster position="bottom-right" />
+              <WishlistProvider>
+                <CategoriesProvider>
+                  <ReviewsProvider>
+                    <NavBar />
+                    <SignedOut>
+                      <SignInButton />
+                    </SignedOut>
+                    <SignedIn>
+                      <UserButton />
+                    </SignedIn>
+                    {children}
+                    <Footer />
+                  </ReviewsProvider>
+                </CategoriesProvider>
+              </WishlistProvider>
+            </CartProvider>
+          </OrderStatusProvider>
+        </ProductsProvider>
+      </UsersProvider>
+    </OrdersProvider>
   );
-} 
+}

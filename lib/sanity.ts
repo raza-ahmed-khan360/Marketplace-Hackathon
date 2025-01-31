@@ -77,4 +77,11 @@ export async function insertOrderIntoSanity(orderData: any) {
         console.error('Error inserting order into Sanity:', error);
         throw new Error('Failed to insert order into Sanity');
     }
-} 
+}
+
+export const sanityClient = createClient({
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
+  useCdn: false,
+  token: process.env.SANITY_API_TOKEN,
+});
