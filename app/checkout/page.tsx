@@ -55,7 +55,27 @@ export default function CheckoutPage() {
       router.push('/cart');
       return;
     }
-  }, [cart.items, router]);
+
+    // Fetch saved addresses if user is logged in
+    if (typeof window !== 'undefined' && window.user?._id) {
+      fetchSavedAddresses();
+    }
+  }, [cart.items.length, router]);
+
+  const fetchSavedAddresses = async () => {
+    try {
+      const result = await client.fetch(
+        `*[_type == "user" && _id == $userId][0].addresses`,
+        { userId: user?._id }
+      );
+      if (result) {
+        setSavedAddresses(result);
+      }
+    } catch (error) {
+      console.error('Error fetching addresses:', error);
+      toast.error('Failed to load saved addresses');
+    }
+  };
 
   const handleAddressSelect = (addressId: string) => {
     setSelectedAddress(addressId);
@@ -64,7 +84,7 @@ export default function CheckoutPage() {
       setFormData({
         firstName: selected.firstName,
         lastName: selected.lastName,
-        email: '',
+        email: user?.email || '',
         phone: selected.phone,
         address: selected.address,
         city: selected.city,
@@ -75,14 +95,48 @@ export default function CheckoutPage() {
     }
   };
 
+  const validateFormData = () => {
+    const { firstName, lastName, email, phone, address, city, state, postalCode, country } = formData;
+    const errors: string[] = [];
+
+    // Validate required fields
+    const requiredErrors = validateRequiredFields({ firstName, lastName, email, phone, address, city, state, postalCode, country });
+    errors.push(...requiredErrors);
+
+    // Validate email format
+    if (email && !validateEmail(email)) {
+        errors.push('Invalid email format.');
+    }
+
+    // Validate phone number format
+    if (phone && !validatePhone(phone)) {
+        errors.push('Invalid phone number format.');
+    }
+
+    // Validate postal code format
+    if (postalCode && !validatePostalCode(postalCode)) {
+        errors.push('Invalid postal code format.');
+    }
+
+    return errors;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+
+    const validationErrors = validateFormData();
+    if (validationErrors.length > 0) {
+        toast.error(validationErrors.join(' '));
+        setLoading(false);
+        return;
+    }
 
     try {
         // Create order in Sanity
         const orderData = {
             _type: 'order',
+            user: user ? { _type: 'reference', _ref: user._id } : undefined,
             items: cart.items.map(item => ({
                 _type: 'orderItem',
                 product: { _type: 'reference', _ref: item.id },
@@ -155,7 +209,7 @@ export default function CheckoutPage() {
 
       {/* Shipping Form */}
       <form onSubmit={handleSubmit} className="space-y-6">
-        {savedAddresses.length > 0 && (
+        {user && savedAddresses.length > 0 && (
           <div>
             <h3 className="text-lg font-semibold mb-2">Saved Addresses</h3>
             <select
