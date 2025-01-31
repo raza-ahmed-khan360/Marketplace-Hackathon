@@ -36,30 +36,25 @@ const Header: NextPage<HeaderProps> = ({ onToggleMenu }) => {
   const totalWishlistItems = wishlistItems?.length || 0;
 
   return (
-    <header className="w-full font-inter flex justify-between items-center bg-gray-scales-off-white py-3 px-4 lg:px-20">
-      <div className="container mx-auto flex items-center justify-between px-0">
-        {/* Logo and Mobile Menu Section */}
+    <header className="w-full font-inter bg-gray-scales-off-white py-3 px-4">
+      <div className="container mx-auto flex items-center justify-between gap-4">
+        {/* Logo and Mobile Menu */}
         <div className="flex items-center gap-4">
-          {/* Logo with Home Link */}
-          <Link 
-            href="/" 
-            className="flex items-center no-underline gap-2"
-          >
+          <Link href="/" className="flex items-center gap-2 no-underline">
             <Image
-              className="w-8 lg:w-10 h-8 lg:h-10"
+              className="w-8 sm:w-10 h-8 sm:h-10"
               width={40}
               height={40}
               alt="Comforty Logo"
               src="/Header/logo.svg"
             />
-            <span className="text-lg lg:text-xl text-gray-scales-black font-medium">
+            <span className="text-lg sm:text-xl text-gray-scales-black font-medium">
               Comforty
             </span>
           </Link>
 
-          {/* Mobile Menu Toggle Button */}
           <button
-            className="sm:hidden flex items-center justify-center w-8 h-8 text-2xl text-gray-scales-black"
+            className="lg:hidden flex items-center justify-center w-10 h-10 text-2xl text-gray-scales-black hover:bg-gray-100 rounded-lg"
             onClick={onToggleMenu}
             aria-label="Toggle Menu"
           >
@@ -67,18 +62,13 @@ const Header: NextPage<HeaderProps> = ({ onToggleMenu }) => {
           </button>
         </div>
 
-        {/* Search and Cart Section */}
-        <div className="flex items-center gap-4">
-          {/* Search Bar - Hidden on Mobile */}
-          <div className="hidden sm:block">
+        {/* Search and Icons */}
+        <div className="flex items-center gap-3 sm:gap-4">
+          <div className="hidden md:block flex-grow max-w-md">
             <SearchBar />
           </div>
-            
-          {/* Wishlist Link - Hidden on Mobile */}
-          <Link 
-            href="/wishlist" 
-            className="hidden sm:flex items-center text-black gap-2 no-underline group"
-          >
+
+          <Link href="/wishlist" className="hidden sm:flex items-center no-underline">
             <div className="relative flex items-center rounded-lg bg-gray-scales-white py-2 px-3 lg:py-[11px] lg:px-4 gap-2 lg:gap-3 shadow-md hover:scale-105 transition-transform">
               {/* Wishlist Icon */}
               <HeartIcon className="w-5 lg:w-[22px] h-5 lg:h-[22px] text-gray-scales-black" />
@@ -115,12 +105,8 @@ const Header: NextPage<HeaderProps> = ({ onToggleMenu }) => {
               </AnimatePresence>
             </div>
           </Link>
-            
-          {/* Cart Link - Always Visible */}
-          <Link 
-            href="/cart" 
-            className="flex items-center text-black gap-2 no-underline group"
-          >
+
+          <Link href="/cart" className="flex items-center no-underline">
             <div className="relative flex items-center rounded-lg bg-gray-scales-white py-2 px-3 lg:py-[11px] lg:px-4 gap-2 lg:gap-3 shadow-md hover:scale-105 transition-transform">
               {/* Cart Icon */}
               <ShoppingCartIcon className="w-5 lg:w-[22px] h-5 lg:h-[22px] text-gray-scales-black" />

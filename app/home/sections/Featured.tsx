@@ -5,7 +5,7 @@ import CardFeatured from "../../components/CardFeatured";
 import { Product } from "../../../types";
 import { getFeaturedProducts } from "../../../lib/api";
 import { useDataFetching } from "../../../lib/hooks/useDataFetching";
-
+ 
 function ProductSkeleton() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

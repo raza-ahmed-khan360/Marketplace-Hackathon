@@ -9,7 +9,7 @@ import { Product } from "../../../types";
 const ExploreSection = () => {
   const router = useRouter();
   const { data: products, isLoading, error } = useDataFetching<Product[]>(getProducts);
-
+ 
   const handleMainImageClick = () => {
     if (products && products.length > 0) {
       router.push(`/single-product?id=${products[0]._id}`);

@@ -11,7 +11,7 @@ const CompanyLogo: NextPage = () => {
         { src: "/homepage/Companies/pandadoc.png", alt: "panda doc", width: 113, height: 115 },
         { src: "/homepage/Companies/moz.png", alt: "moz", width: 84, height: 87 }
     ];
-
+ 
     return (
         <section className="w-full py-12 font-inter bg-gray-scales-white">
             <div className="container mx-auto px-4 lg:px-20">

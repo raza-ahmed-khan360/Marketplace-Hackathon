@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
- 
+  
 const Footer: NextPage = () => {
   return (
     <footer className="w-auto flex flex-col items-center bg-gray-scales-off-white py-10 px-4 sm:px-8 md:px-12 lg:px-20 font-inter">

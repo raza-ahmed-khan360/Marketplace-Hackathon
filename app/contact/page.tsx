@@ -1,8 +1,6 @@
 import type { NextPage } from 'next';
 import Image from "next/image";
 
-
-
 const Contact:NextPage = () => {
   	return (
         <div className="w-auto flex flex-col items-center justify-center px-4 md:px-8 lg:px-16 xl:px-24">

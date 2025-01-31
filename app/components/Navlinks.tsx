@@ -4,7 +4,11 @@ import type { NextPage } from "next";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const NavLinks: NextPage = () => {
+interface NavLinksProps {
+  isMobile: boolean;
+}
+
+const NavLinks: NextPage<NavLinksProps> = ({ isMobile }) => {
   const pathname = usePathname();
   
   const navItems = [
@@ -21,11 +25,6 @@ const NavLinks: NextPage = () => {
       matches: ["/about"]
     },
     { 
-      href: "/user-panel", 
-      label: "My Orders",
-      matches: ["/user-panel"]
-    },
-    { 
       href: "/checkout", 
       label: "Checkout",
       matches: ["/checkout", "/order-confirmation"]
@@ -40,10 +39,10 @@ const NavLinks: NextPage = () => {
   };
 
   return (
-    <nav className="w-full flex justify-between font-inter bg-gray-scales-white shadow-[0px_1px_0px_#e1e3e5]">
-      <div className="container mx-auto px-4 lg:px-20 py-3">
-        <div className="flex flex-col lg:flex-row items-center justify-between">
-          <div className="flex flex-col lg:flex-row items-center space-y-3 lg:space-y-0 lg:space-x-8 mb-4 lg:mb-0">
+    <nav className="w-full font-inter bg-gray-scales-white">
+      <div className={`container mx-auto px-4 ${isMobile ? 'py-2' : 'py-4'}`}>
+        <div className={`flex ${isMobile ? 'flex-col space-y-4' : 'flex-row items-center justify-between'}`}>
+          <div className={`flex ${isMobile ? 'flex-col space-y-3' : 'flex-row items-center space-x-6 xl:space-x-8'}`}>
             {navItems.map((item) => (
               <Link
                 key={item.href}
@@ -52,16 +51,16 @@ const NavLinks: NextPage = () => {
                   isActiveLink(item)
                     ? "text-accents-dark-accents font-semibold"
                     : "text-gray-scales-dark-gray hover:text-accents-dark-accents"
-                }`}
+                } ${isMobile ? 'py-2' : ''}`}
               >
                 {item.label}
               </Link>
             ))}
           </div>
 
-          <div className="flex flex-col lg:flex-row items-center space-y-2 lg:space-y-0 lg:space-x-2">
-            <span className="text-sm text-gray-scales-dark-gray capitalize">Need Help?</span>
-            <span className="text-sm font-medium text-gray-scales-black capitalize">(808) 555-0111</span>
+          <div className={`flex items-center space-x-2 ${isMobile ? 'mt-6 pt-4 border-t' : ''}`}>
+            <span className="text-sm text-gray-scales-dark-gray whitespace-nowrap">Need Help?</span>
+            <span className="text-sm font-medium text-gray-scales-black whitespace-nowrap">(808) 555-0111</span>
           </div>
         </div>
       </div>
@@ -69,4 +68,4 @@ const NavLinks: NextPage = () => {
   );
 };
 
-export default NavLinks; 
+export default NavLinks;

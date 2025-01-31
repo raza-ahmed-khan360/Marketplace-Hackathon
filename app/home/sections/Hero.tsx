@@ -1,7 +1,6 @@
 import type { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
-
 const Hero: NextPage = () => {
   return (
     <div className="w-full flex justify-center py-8 lg:py-0">

@@ -16,7 +16,7 @@ function CategorySkeleton() {
         />
       ))}
     </div>
-  );
+  ); 
 }
 
 function ErrorFallback({ error, resetErrorBoundary }: { error: Error; resetErrorBoundary: () => void }) {
