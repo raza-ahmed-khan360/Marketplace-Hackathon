@@ -115,7 +115,7 @@ const ProductCarousel = ({ currentProductId }: ProductCarouselProps) => {
       </div>
 
       {/* Product Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-[20px]">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-[20px]">
         {relatedProducts.map((product) => (
           <CardFeatured
             key={product._id}
