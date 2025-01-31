@@ -6,6 +6,7 @@ import { useCart, CartItem } from '../contexts/CartContext';
 import { client } from '../../lib/sanity';
 import { toast } from 'react-hot-toast';
 import DOMPurify from 'dompurify';
+
 interface Address {
   type: string;
   firstName: string;
@@ -55,18 +56,13 @@ export default function CheckoutPage() {
       router.push('/cart');
       return;
     }
-
-    // Fetch saved addresses if user is logged in
-    if (typeof window !== 'undefined' && window.user?._id) {
-      fetchSavedAddresses();
-    }
   }, [cart.items.length, router]);
 
   const fetchSavedAddresses = async () => {
     try {
       const result = await client.fetch(
         `*[_type == "user" && _id == $userId][0].addresses`,
-        { userId: user?._id }
+        { userId: 'dummyUserId' } // Replace with actual user ID if needed
       );
       if (result) {
         setSavedAddresses(result);
@@ -84,7 +80,7 @@ export default function CheckoutPage() {
       setFormData({
         firstName: selected.firstName,
         lastName: selected.lastName,
-        email: user?.email || '',
+        email: '',
         phone: selected.phone,
         address: selected.address,
         city: selected.city,
@@ -95,48 +91,14 @@ export default function CheckoutPage() {
     }
   };
 
-  const validateFormData = () => {
-    const { firstName, lastName, email, phone, address, city, state, postalCode, country } = formData;
-    const errors: string[] = [];
-
-    // Validate required fields
-    const requiredErrors = validateRequiredFields({ firstName, lastName, email, phone, address, city, state, postalCode, country });
-    errors.push(...requiredErrors);
-
-    // Validate email format
-    if (email && !validateEmail(email)) {
-        errors.push('Invalid email format.');
-    }
-
-    // Validate phone number format
-    if (phone && !validatePhone(phone)) {
-        errors.push('Invalid phone number format.');
-    }
-
-    // Validate postal code format
-    if (postalCode && !validatePostalCode(postalCode)) {
-        errors.push('Invalid postal code format.');
-    }
-
-    return errors;
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-
-    const validationErrors = validateFormData();
-    if (validationErrors.length > 0) {
-        toast.error(validationErrors.join(' '));
-        setLoading(false);
-        return;
-    }
 
     try {
         // Create order in Sanity
         const orderData = {
             _type: 'order',
-            user: user ? { _type: 'reference', _ref: user._id } : undefined,
             items: cart.items.map(item => ({
                 _type: 'orderItem',
                 product: { _type: 'reference', _ref: item.id },
@@ -209,7 +171,7 @@ export default function CheckoutPage() {
 
       {/* Shipping Form */}
       <form onSubmit={handleSubmit} className="space-y-6">
-        {user && savedAddresses.length > 0 && (
+        {savedAddresses.length > 0 && (
           <div>
             <h3 className="text-lg font-semibold mb-2">Saved Addresses</h3>
             <select
@@ -321,4 +283,4 @@ export default function CheckoutPage() {
       </form>
     </div>
   );
-} 
+}
