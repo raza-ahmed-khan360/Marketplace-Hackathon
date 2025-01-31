@@ -36,7 +36,7 @@ const Header: NextPage<HeaderProps> = ({ onToggleMenu }) => {
   const totalWishlistItems = wishlistItems?.length || 0;
 
   return (
-    <header className="w-full font-inter bg-gray-scales-off-white py-3 px-4">
+    <header className="w-auto font-inter bg-gray-scales-off-white py-3 px-4">
       <div className="container mx-auto flex items-center justify-between gap-4">
         {/* Logo and Mobile Menu */}
         <div className="flex items-center gap-4">
