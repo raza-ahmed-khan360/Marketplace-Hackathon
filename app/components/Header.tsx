@@ -1,5 +1,5 @@
 'use client';
- 
+
 import type { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,34 +11,21 @@ import SearchBar from './SearchBar';
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from 'react';
 
-/**
- * Header Component Props
- * @property {Function} onToggleMenu - Callback function to toggle mobile menu visibility
- */
 interface HeaderProps {
   onToggleMenu: () => void;
 }
 
-/**
- * Header Component
- * Main navigation header of the application featuring logo, search, and cart
- * 
- * @param {HeaderProps} props - Component props
- * @returns {JSX.Element} Header with responsive navigation elements
- */
 const Header: NextPage<HeaderProps> = ({ onToggleMenu }) => {
   const { cart } = useCart();
   const { wishlistItems } = useWishlist();
   const [isSearchVisible, setIsSearchVisible] = useState(false);
   
-  // Calculate total items in cart
   const totalItems = cart.items.reduce((sum, item) => sum + item.quantity, 0);
   const totalWishlistItems = wishlistItems?.length || 0;
 
   return (
     <header className="w-auto font-inter bg-gray-scales-off-white py-3 px-4">
       <div className="container mx-auto flex items-center justify-between gap-4">
-        {/* Logo and Mobile Menu */}
         <div className="flex items-center gap-4">
           <Link href="/" className="flex items-center gap-2 no-underline">
             <Image
@@ -62,7 +49,6 @@ const Header: NextPage<HeaderProps> = ({ onToggleMenu }) => {
           </button>
         </div>
 
-        {/* Search and Icons */}
         <div className="flex items-center gap-3 sm:gap-4">
           <div className="hidden md:block flex-grow max-w-md">
             <SearchBar />
@@ -70,13 +56,10 @@ const Header: NextPage<HeaderProps> = ({ onToggleMenu }) => {
 
           <Link href="/wishlist" className="hidden sm:flex items-center no-underline">
             <div className="relative flex items-center rounded-lg bg-gray-scales-white py-2 px-3 lg:py-[11px] lg:px-4 gap-2 lg:gap-3 shadow-md hover:scale-105 transition-transform">
-              {/* Wishlist Icon */}
               <HeartIcon className="w-5 lg:w-[22px] h-5 lg:h-[22px] text-gray-scales-black" />
               <span className="hidden lg:inline text-xs lg:text-sm font-medium capitalize">
                 Wishlist
               </span>
-              
-              {/* Animated Wishlist Item Count Badge */}
               <AnimatePresence>
                 {totalWishlistItems > 0 && (
                   <motion.div
@@ -108,13 +91,10 @@ const Header: NextPage<HeaderProps> = ({ onToggleMenu }) => {
 
           <Link href="/cart" className="flex items-center no-underline">
             <div className="relative flex items-center rounded-lg bg-gray-scales-white py-2 px-3 lg:py-[11px] lg:px-4 gap-2 lg:gap-3 shadow-md hover:scale-105 transition-transform">
-              {/* Cart Icon */}
               <ShoppingCartIcon className="w-5 lg:w-[22px] h-5 lg:h-[22px] text-gray-scales-black" />
               <span className="hidden lg:inline text-xs lg:text-sm font-medium capitalize">
                 Cart
               </span>
-              
-              {/* Animated Cart Item Count Badge */}
               <AnimatePresence>
                 {totalItems > 0 && (
                   <motion.div

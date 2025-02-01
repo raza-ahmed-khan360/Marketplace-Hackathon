@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 const Hero: NextPage = () => {
   return (
-    <div className="w-full flex justify-center py-8 lg:py-0">
+    <div className="w-full flex justify-center py-8 lg:pt-8">
       <div className="container mx-auto px-4 lg:px-20 max-w-7xl">
         <div className="relative flex flex-col-reverse lg:flex-row items-center justify-around bg-gray-scales-off-white rounded-3xs lg:rounded-bl-[48px] overflow-hidden">
           {/* Text Content */}

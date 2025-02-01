@@ -34,12 +34,6 @@ export default function ClientLayout({
                 <CategoriesProvider>
                   <ReviewsProvider>
                     <NavBar />
-                    <SignedOut>
-                      <SignInButton />
-                    </SignedOut>
-                    <SignedIn>
-                      <UserButton />
-                    </SignedIn>
                     {children}
                     <Footer />
                   </ReviewsProvider>

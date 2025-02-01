@@ -1,5 +1,6 @@
 'use client';
 
+import { SignedIn, UserButton, SignedOut, SignInButton } from "@clerk/nextjs";
 import type { NextPage } from "next";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -10,28 +11,28 @@ interface NavLinksProps {
 
 const NavLinks: NextPage<NavLinksProps> = ({ isMobile }) => {
   const pathname = usePathname();
-  
+
   const navItems = [
     { href: "/", label: "Home" },
-    { 
-      href: "/products", 
+    {
+      href: "/products",
       label: "Products",
       matches: ["/products", "/single-product"]
     },
     { href: "/contact", label: "Contact" },
-    { 
-      href: "/about", 
+    {
+      href: "/about",
       label: "About Us",
       matches: ["/about"]
     },
-    { 
-      href: "/checkout", 
+    {
+      href: "/checkout",
       label: "Checkout",
       matches: ["/checkout", "/order-confirmation"]
     }
   ];
 
-  const isActiveLink = (item: { href: string, matches?: string[] }) => {
+  const isActiveLink = (item: { href: string; matches?: string[] }) => {
     if (item.matches) {
       return item.matches.some(path => pathname?.startsWith(path));
     }
@@ -40,22 +41,32 @@ const NavLinks: NextPage<NavLinksProps> = ({ isMobile }) => {
 
   return (
     <nav className="w-full font-inter bg-gray-scales-white">
-      <div className={`container mx-auto px-4 ${isMobile ? 'py-2' : 'py-4'}`}>
+      <div className={`container mx-auto px-2 ${isMobile ? 'py-2' : 'py-4'}`}>
         <div className={`flex ${isMobile ? 'flex-col space-y-4' : 'flex-row items-center justify-between'}`}>
           <div className={`flex ${isMobile ? 'flex-col space-y-3' : 'flex-row items-center space-x-6 xl:space-x-8'}`}>
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`text-sm no-underline capitalize transition-colors ${
-                  isActiveLink(item)
-                    ? "text-accents-dark-accents font-semibold"
-                    : "text-gray-scales-dark-gray hover:text-accents-dark-accents"
+                className={`text-sm no-underline capitalize transition-colors ${isActiveLink(item)
+                  ? "text-accents-dark-accents font-semibold"
+                  : "text-gray-scales-dark-gray hover:text-accents-dark-accents"
                 } ${isMobile ? 'py-2' : ''}`}
               >
                 {item.label}
               </Link>
             ))}
+            <SignedOut>
+              <div className={`text-sm no-underline capitalize transition-colors text-gray-scales-dark-gray font-inter bg-inherit hover:text-accents-dark-accents ${isMobile ? 'py-2' : ''}`}>
+                <SignInButton mode="modal" />
+              </div>
+            </SignedOut>
+
+            <SignedIn>
+              <div className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-700">
+                <UserButton />
+              </div>
+            </SignedIn>
           </div>
 
           <div className={`flex items-center space-x-2 ${isMobile ? 'mt-6 pt-4 border-t' : ''}`}>
