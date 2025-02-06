@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useCart, CartItem } from '../contexts/CartContext';
-import { client } from '../../lib/sanity';
+import { useCart } from '../contexts/CartContext';
 import { toast } from 'react-hot-toast';
 import DOMPurify from 'dompurify';
 
@@ -58,21 +57,6 @@ export default function CheckoutPage() {
     }
   }, [cart.items.length, router]);
 
-  const fetchSavedAddresses = async () => {
-    try {
-      const result = await client.fetch(
-        `*[_type == "user" && _id == $userId][0].addresses`,
-        { userId: 'dummyUserId' } // Replace with actual user ID if needed
-      );
-      if (result) {
-        setSavedAddresses(result);
-      }
-    } catch (error) {
-      console.error('Error fetching addresses:', error);
-      toast.error('Failed to load saved addresses');
-    }
-  };
-
   const handleAddressSelect = (addressId: string) => {
     setSelectedAddress(addressId);
     const selected = savedAddresses.find(addr => addr.type === addressId);
@@ -96,39 +80,46 @@ export default function CheckoutPage() {
     setLoading(true);
 
     try {
-        // Create order in Sanity
-        const orderData = {
-            _type: 'order',
-            items: cart.items.map(item => ({
-                _type: 'orderItem',
-                product: { _type: 'reference', _ref: item.id },
-                quantity: item.quantity,
-                price: item.price
-            })),
-            total: calculateTotal(),
-            status: 'processing',
-            shippingAddress: {
-                ...formData,
-                type: selectedAddress || 'shipping'
-            },
-            createdAt: new Date().toISOString()
-        };
+      const orderData = {
+        _type: 'order',
+        items: cart.items.map(item => ({
+          _type: 'orderItem',
+          product: { _type: 'reference', _ref: item.id },
+          quantity: item.quantity,
+          price: item.price
+        })),
+        total: calculateTotal(),
+        status: 'processing',
+        shippingAddress: {
+          ...formData,
+          type: selectedAddress || 'shipping'
+        },
+        createdAt: new Date().toISOString()
+      };
 
-        console.log('Order Data:', orderData); // Log order data for debugging
+      const response = await fetch('/api/order', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(orderData)
+      });
 
-        const order = await client.create(orderData);
-        console.log('Order Created:', order); // Log the created order
+      if (!response.ok) {
+        throw new Error('Failed to create order');
+      }
 
-        // Clear cart and redirect to order confirmation
-        clearCart();
-        router.push(`/order-confirmation?orderId=${order._id}`);
-        toast.success('Order placed successfully!');
+      const order = await response.json();
 
+      // Clear cart and redirect to order confirmation
+      clearCart();
+      router.push(`/order-confirmation?orderId=${order._id}`);
+      toast.success('Order placed successfully!');
     } catch (error) {
-        console.error('Error creating order:', error); // Log the error
-        toast.error('Failed to place order. Please try again.');
+      console.error('Error creating order:', error);
+      toast.error('Failed to place order. Please try again.');
     } finally {
-        setLoading(false);
+      setLoading(false);
     }
   };
 
@@ -136,14 +127,6 @@ export default function CheckoutPage() {
     const { name, value } = e.target;
     const sanitizedValue = DOMPurify.sanitize(value);
     setFormData(prev => ({ ...prev, [name]: sanitizedValue }));
-  };
-
-  const handleAddToCart = (product: { name: any; }) => {
-    // Logic to add product to cart
-    // ...
-
-    // Trigger toast notification
-    toast.success(`${product.name} added to cart!`);
   };
 
   return (

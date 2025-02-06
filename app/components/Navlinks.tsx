@@ -1,6 +1,6 @@
 'use client';
 
-import { SignedIn, UserButton, SignedOut, SignInButton } from "@clerk/nextjs";
+import { LoginLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs/components";
 import type { NextPage } from "next";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -56,17 +56,17 @@ const NavLinks: NextPage<NavLinksProps> = ({ isMobile }) => {
                 {item.label}
               </Link>
             ))}
-            <SignedOut>
+            <RegisterLink>
               <div className={`text-sm no-underline capitalize transition-colors text-gray-scales-dark-gray font-inter bg-inherit hover:text-accents-dark-accents ${isMobile ? 'py-2' : ''}`}>
-                <SignInButton mode="modal" />
+                Sign Up
               </div>
-            </SignedOut>
+            </RegisterLink>
 
-            <SignedIn>
+            <LoginLink>
               <div className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-700">
-                <UserButton />
+                Sign In               
               </div>
-            </SignedIn>
+            </LoginLink>
           </div>
 
           <div className={`flex items-center space-x-2 ${isMobile ? 'mt-6 pt-4 border-t' : ''}`}>
