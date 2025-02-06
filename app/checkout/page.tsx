@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useCart } from '../contexts/CartContext';
 import { toast } from 'react-hot-toast';
 import DOMPurify from 'dompurify';
+import { client } from '@/lib/sanity';
 
 interface Address {
   type: string;
@@ -97,23 +98,15 @@ export default function CheckoutPage() {
         createdAt: new Date().toISOString()
       };
 
-      const response = await fetch('/api/order', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(orderData)
-      });
+      console.log('Order Data:', orderData); // Log order data
 
-      if (!response.ok) {
-        throw new Error('Failed to create order');
-      }
-
-      const order = await response.json();
+      // Save order to Sanity
+      const createdOrder = await client.create(orderData);
+      console.log('Created Order:', createdOrder); // Log created order
 
       // Clear cart and redirect to order confirmation
       clearCart();
-      router.push(`/order-confirmation?orderId=${order._id}`);
+      router.push(`/order-confirmation?orderId=${createdOrder._id}`);
       toast.success('Order placed successfully!');
     } catch (error) {
       console.error('Error creating order:', error);
