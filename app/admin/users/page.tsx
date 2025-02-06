@@ -28,6 +28,7 @@ const ManageUsers = () => {
           </tbody>
         </table>
       </div>
+      
     </div>
   );
 };

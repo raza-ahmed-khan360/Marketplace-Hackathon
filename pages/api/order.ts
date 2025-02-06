@@ -11,8 +11,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(400).json({ message: 'Invalid order data' });
       }
 
+      console.log('Received Order Data:', orderData); // Log received order data
+
       // Save order to Sanity
       const createdOrder = await client.create(orderData);
+      console.log('Created Order in Sanity:', createdOrder); // Log created order in Sanity
 
       res.status(201).json(createdOrder);
     } catch (error) {

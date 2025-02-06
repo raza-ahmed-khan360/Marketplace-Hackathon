@@ -5,6 +5,8 @@ import { client } from '@/lib/sanity';
 interface Order {
   _id: string;
   orderNumber: string;
+  total: number;
+  status: string;
 }
 
 interface OrdersContextProps {

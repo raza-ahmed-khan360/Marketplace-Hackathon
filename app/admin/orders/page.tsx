@@ -33,7 +33,7 @@ const ManageOrders = () => {
           <tbody>
             {orders.map((order) => (
               <tr key={order._id}>
-                <td className="border px-4 py-2">{order._id}</td>
+                <td className="border px-4 py-2">{order.orderNumber}</td>
                 <td className="border px-4 py-2">${order.total}</td>
                 <td className="border px-4 py-2">{order.status}</td>
               </tr>

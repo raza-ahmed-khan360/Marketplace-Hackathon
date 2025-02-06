@@ -83,6 +83,8 @@ export default function CheckoutPage() {
     try {
       const orderData = {
         _type: 'order',
+        orderNumber: `ORD-${Date.now()}`,
+        user: { _type: 'reference', _ref: 'user-id-placeholder' }, // Replace with actual user ID
         items: cart.items.map(item => ({
           _type: 'orderItem',
           product: { _type: 'reference', _ref: item.id },
@@ -95,7 +97,8 @@ export default function CheckoutPage() {
           ...formData,
           type: selectedAddress || 'shipping'
         },
-        createdAt: new Date().toISOString()
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
       };
 
       console.log('Order Data:', orderData); // Log order data

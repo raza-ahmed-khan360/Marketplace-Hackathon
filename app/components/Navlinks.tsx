@@ -1,6 +1,7 @@
 'use client';
 
-import { LoginLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs/components";
+import { LoginLink, LogoutLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs/components";
+import { useKindeAuth } from "@kinde-oss/kinde-auth-nextjs";
 import type { NextPage } from "next";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -11,6 +12,7 @@ interface NavLinksProps {
 
 const NavLinks: NextPage<NavLinksProps> = ({ isMobile }) => {
   const pathname = usePathname();
+  const { isAuthenticated, user } = useKindeAuth();
 
   const navItems = [
     { href: "/", label: "Home" },
@@ -56,17 +58,30 @@ const NavLinks: NextPage<NavLinksProps> = ({ isMobile }) => {
                 {item.label}
               </Link>
             ))}
-            <RegisterLink>
-              <div className={`text-sm no-underline capitalize transition-colors text-gray-scales-dark-gray font-inter bg-inherit hover:text-accents-dark-accents ${isMobile ? 'py-2' : ''}`}>
-                Sign Up
-              </div>
-            </RegisterLink>
+            {isAuthenticated ? (
+              <>
+                <span className="text-sm text-gray-scales-dark-gray">Hello, {user?.given_name}</span>
+                <LogoutLink>
+                  <div className="text-sm text-gray-scales-dark-gray hover:text-accents-dark-accents">
+                    Sign Out
+                  </div>
+                </LogoutLink>
+              </>
+            ) : (
+              <>
+                <RegisterLink>
+                  <div className={`text-sm no-underline capitalize transition-colors text-gray-scales-dark-gray font-inter bg-inherit hover:text-accents-dark-accents ${isMobile ? 'py-2' : ''}`}>
+                    Sign Up
+                  </div>
+                </RegisterLink>
 
-            <LoginLink>
-              <div className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-700">
-                Sign In               
-              </div>
-            </LoginLink>
+                <LoginLink>
+                  <div className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-700">
+                    Sign In               
+                  </div>
+                </LoginLink>
+              </>
+            )}
           </div>
 
           <div className={`flex items-center space-x-2 ${isMobile ? 'mt-6 pt-4 border-t' : ''}`}>
