@@ -3,7 +3,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import { client } from '@/lib/sanity';
 
 interface Product {
-  price: ReactI18NextChildren | Iterable<ReactI18NextChildren>;
+  price: number;
   _id: string;
   name: string;
 }

@@ -3,7 +3,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import { client } from '@/lib/sanity';
 
 interface User {
-  email: ReactI18NextChildren | Iterable<ReactI18NextChildren>;
+  email: string;
   _id: string;
   name: string;
 }
