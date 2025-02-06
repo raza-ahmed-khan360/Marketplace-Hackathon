@@ -60,7 +60,9 @@ const NavLinks: NextPage<NavLinksProps> = ({ isMobile }) => {
             ))}
             {isAuthenticated ? (
               <>
-                <span className="text-sm text-gray-scales-dark-gray">Hello, {user?.given_name || 'User'}</span>
+                {user && (
+                  <span className="text-sm text-gray-scales-dark-gray">Hello, {user.given_name || 'User'}</span>
+                )}
                 <LogoutLink>
                   <div className="text-sm text-gray-scales-dark-gray hover:text-accents-dark-accents">
                     Sign Out

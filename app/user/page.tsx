@@ -7,7 +7,7 @@ export default async function UserDashboard() {
   return (
     <div>
       <h1>User Dashboard</h1>
-      <p>Welcome, {user?.given_name || 'Guest'}!</p>
+      <p>Welcome, {user ? user.given_name : 'Guest'}!</p>
     </div>
   );
 }
