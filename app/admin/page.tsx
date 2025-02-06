@@ -7,7 +7,7 @@ export default async function AdminDashboard() {
   return (
     <div>
       <h1>Admin Dashboard</h1>
-      <p>Welcome, {user.given_name}!</p>
+      <p>Welcome, {user ? user.given_name : 'Admin'}!</p>
     </div>
   );
 }
