@@ -11,12 +11,6 @@ import { OrdersProvider } from './contexts/OrdersContext';
 import { ProductsProvider } from './contexts/ProductsContext';
 import { UsersProvider } from './contexts/UsersContext';
 import { Toaster } from 'react-hot-toast';
-import {
-  SignedIn,
-  SignedOut,
-  SignInButton,
-  UserButton
-} from '@clerk/nextjs';
 
 export default function ClientLayout({
   children,
