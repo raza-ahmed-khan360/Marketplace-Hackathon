@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Product } from '../../types';
 import CardFeatured from '../components/CardFeatured';
-import { client } from '../../lib/sanity';
+import { client } from '@/sanity/lib/client';
 
 /**
  * Interface for ProductCarousel component props

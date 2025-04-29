@@ -6,7 +6,8 @@ import { notFound } from 'next/navigation';
 import Product from './Product';
 import ProductCarousel from './Suggestion';
 import { Product as ProductType } from '../../types';
-import { client, productByIdQuery } from '../../lib/sanity';
+import { productByIdQuery } from '../../lib/sanity';
+import { client } from '@/sanity/lib/client';
 
 export default function SingleProduct(): JSX.Element {
   return (

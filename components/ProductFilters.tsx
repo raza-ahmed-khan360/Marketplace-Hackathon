@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useCategories } from '../app/contexts/CategoriesContext';
+import { useCategories } from '../app/atoms/categoriesAtom';
 
 export default function ProductFilters() {
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000]);

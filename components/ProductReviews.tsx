@@ -1,4 +1,4 @@
-import { useReviews } from '../app/contexts/ReviewsContext';
+import { useReviews } from '../app/atoms/reviewsAtom';
 
 export default function ProductReviews({ productId }: { productId: string }) {
   const { reviews, addReview } = useReviews(productId);

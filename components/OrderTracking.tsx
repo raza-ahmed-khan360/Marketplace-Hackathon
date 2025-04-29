@@ -1,4 +1,4 @@
-import { useOrderStatus } from '../app/contexts/OrderStatusContext';
+import { useOrderStatus } from '../app/atoms/orderStatusAtom';
 
 function getStepStatus(currentStatus: string, index: number) {
   const statuses = ['Processing', 'Shipped', 'Out for Delivery', 'Delivered'];
