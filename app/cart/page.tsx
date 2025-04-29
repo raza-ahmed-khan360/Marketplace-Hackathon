@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { useCart } from '../contexts/CartContext';
+import { useCart } from '../atoms/cartAtom';
 import { TrashIcon } from '@heroicons/react/24/outline';
 
 export default function CartPage() {
@@ -98,7 +98,7 @@ export default function CartPage() {
           <div className="space-y-2 mb-4">
             <div className="flex justify-between">
               <span>Subtotal</span>
-              <span>${calculateTotal().toFixed(2)}</span>
+              <span>${calculateTotal.toFixed(2)}</span>
             </div>
             <div className="flex justify-between">
               <span>Shipping</span>
@@ -109,7 +109,7 @@ export default function CartPage() {
           <div className="border-t pt-4 mb-6">
             <div className="flex justify-between font-bold">
               <span>Total</span>
-              <span>${calculateTotal().toFixed(2)}</span>
+              <span>${calculateTotal.toFixed(2)}</span>
             </div>
           </div>
 

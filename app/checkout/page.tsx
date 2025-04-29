@@ -2,10 +2,9 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useCart } from '../contexts/CartContext';
+import { useCart } from '../atoms/cartAtom';
 import { toast } from 'react-hot-toast';
 import DOMPurify from 'dompurify';
-import { client } from '@/lib/sanity';
 
 interface Address {
   type: string;
@@ -34,7 +33,7 @@ interface FormData {
 
 export default function CheckoutPage() {
   const router = useRouter();
-  const { cart, clearCart, calculateTotal } = useCart();
+  const { cart, clearCart } = useCart();
   const [loading, setLoading] = useState(false);
   const [savedAddresses, setSavedAddresses] = useState<Address[]>([]);
   const [selectedAddress, setSelectedAddress] = useState<string>('');
@@ -82,34 +81,32 @@ export default function CheckoutPage() {
 
     try {
       const orderData = {
-        _type: 'order',
-        orderNumber: `ORD-${Date.now()}`,
-        user: { _type: 'reference', _ref: 'user-id-placeholder' }, // Replace with actual user ID
         items: cart.items.map(item => ({
-          _type: 'orderItem',
-          product: { _type: 'reference', _ref: item.id },
+          id: item.id,
           quantity: item.quantity,
           price: item.price
         })),
-        total: calculateTotal(),
-        status: 'processing',
-        shippingAddress: {
-          ...formData,
-          type: selectedAddress || 'shipping'
-        },
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString()
+        total: cart.items.reduce((sum, item) => sum + (item.price * item.quantity), 0),
+        shippingAddress: formData
       };
 
-      console.log('Order Data:', orderData); // Log order data
+      const response = await fetch('/api/order', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(orderData),
+      });
 
-      // Save order to Sanity
-      const createdOrder = await client.create(orderData);
-      console.log('Created Order:', createdOrder); // Log created order
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to create order');
+      }
 
       // Clear cart and redirect to order confirmation
       clearCart();
-      router.push(`/order-confirmation?orderId=${createdOrder._id}`);
+      router.push(`/order-confirmation?orderId=${data.orderId}`);
       toast.success('Order placed successfully!');
     } catch (error) {
       console.error('Error creating order:', error);
@@ -142,7 +139,7 @@ export default function CheckoutPage() {
           <div className="border-t mt-4 pt-4">
             <div className="flex justify-between font-bold">
               <span>Total</span>
-              <span>${calculateTotal().toFixed(2)}</span>
+              <span>${cart.items.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2)}</span>
             </div>
           </div>
         </div>

@@ -1,12 +1,10 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import Image from "next/image";
-import { useCart } from '../../contexts/CartContext';
+import { useCart } from '../../atoms/cartAtom';
 import { notFound } from 'next/navigation';
 import { toast } from 'react-hot-toast';
 import CardFeatured from '../../components/CardFeatured';
-import { client } from '../../../lib/sanity';
 import { Product } from '../../../types';
 import { useDataFetching } from '../../../lib/hooks/useDataFetching';
 import { getProductById, getRelatedProducts } from '../../../lib/api';

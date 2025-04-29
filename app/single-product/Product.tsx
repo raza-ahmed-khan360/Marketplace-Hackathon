@@ -1,8 +1,8 @@
 'use client';
 
 import Image from "next/image";
-import { useCart } from "../contexts/CartContext";
-import { useWishlist } from '../contexts/WishlistContext';
+import { useCart } from "../atoms/cartAtom";
+import { useWishlist } from '../atoms/wishlistAtom';
 import { Product as ProductType } from "../../types";
 import toast from 'react-hot-toast';
 import { ShoppingCartIcon, HeartIcon } from '@heroicons/react/24/outline';

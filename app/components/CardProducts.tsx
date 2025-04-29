@@ -3,8 +3,8 @@
 import { useState, useEffect } from 'react';
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useCart } from "../contexts/CartContext";
-import { useWishlist } from "../contexts/WishlistContext";
+import { useCart } from "../atoms/cartAtom";
+import { useWishlist } from "../atoms/wishlistAtom";
 import { Product } from "../../types";
 import { getProducts } from "../../lib/api";
 import toast from 'react-hot-toast';

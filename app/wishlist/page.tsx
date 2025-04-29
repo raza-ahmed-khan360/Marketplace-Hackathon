@@ -1,6 +1,6 @@
 'use client';
 
-import { useWishlist } from '../contexts/WishlistContext';
+import { useWishlist } from '../atoms/wishlistAtom';
 import CardFeatured from '../components/CardFeatured';
 import { TrashIcon } from '@heroicons/react/24/outline';
 

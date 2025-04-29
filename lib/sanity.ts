@@ -1,13 +1,5 @@
-import { createClient } from '@sanity/client';
+import { client } from '@/sanity/lib/client';
 import imageUrlBuilder from '@sanity/image-url';
-
-export const client = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
-  apiVersion: '2024-03-13',
-  useCdn: true,
-  token: process.env.SANITY_API_TOKEN,
-});
 
 const imageBuilder = imageUrlBuilder(client);
 
@@ -79,9 +71,3 @@ export async function insertOrderIntoSanity(orderData: any) {
     }
 }
 
-export const sanityClient = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
-  useCdn: false,
-  token: process.env.SANITY_API_TOKEN,
-});

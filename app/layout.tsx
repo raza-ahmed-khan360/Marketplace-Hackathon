@@ -1,7 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import ClientLayout from "./ClientLayout";
-import { AuthProvider } from "./AuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,7 +10,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <AuthProvider>
       <html lang="en">
         <body className={`antialiased ${inter.className}`}>
           <ClientLayout>
@@ -19,6 +17,5 @@ export default function RootLayout({
           </ClientLayout>
         </body>
       </html>
-    </AuthProvider>
   );
 }

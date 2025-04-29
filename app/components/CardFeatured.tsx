@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useCart } from "../contexts/CartContext";
-import { useWishlist } from "../contexts/WishlistContext";
+import { useCart } from "../atoms/cartAtom";
+import { useWishlist } from "../atoms/wishlistAtom";
 import toast from 'react-hot-toast';
 import { ShoppingCartIcon, HeartIcon } from '@heroicons/react/24/outline';
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/24/solid';
